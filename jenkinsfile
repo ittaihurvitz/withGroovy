@@ -1,11 +1,27 @@
+def env = "testing"
+
 pipeline {
     agent {label 'WinAgent'}
     stages {
         stage('build') {
             steps {
-                echo 'stage build'
+                echo 'stage build, env = ' + env
                 //bat 'python --version'
                 bat 'java -version'
+                script{
+                    try {
+                        println 'env = ' + env
+                        println 'before reading file'
+                        def file2 = readFile 'E:/Example.txt'
+                        println 'after read file before use it'
+                        println file2
+                    } catch (Exception e) {
+                        println 'inside catch block!!!'
+                        println "I caught e: ${e.message}"
+                    } finally {
+                        println 'inside finally block'
+                    }
+                }
             }
             post {
                 success {
