@@ -6,3 +6,8 @@ add line 4
 add line 5
 try to loose history
 
+
+
+
+try to loose history again
+
